@@ -1,15 +1,19 @@
 filename$ = "sample.txt"
 open filename$
-total = 0
+i = 0
 dim arr$(6)
-for i=1 to 5
+while not eof
 sn$ = read
 arr$[i] = sn$
-next i
+i = i + 1
+end while
+
 
 reset
+input "Enter text to delete : ",deleteText$
 for i=1 to 5
-if arr$[i] <> "text2"  then
-write arr$[i]
+if arr$[i] <> deleteText$  then
+writeline arr$[i]
 end if
 next i
+print "Text deleted successfully"
