@@ -1,0 +1,17 @@
+filename$ = "sample.txt"
+open filename$
+total = 0
+dim arr$(6)
+for i=1 to 5
+sn$ = read
+arr$[i] = sn$
+next i
+
+reset
+for i=1 to 5
+if arr$[i] = "text2"  then
+writeline "next Text"
+else 
+write arr$[i]
+end if
+next i

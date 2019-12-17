@@ -1,0 +1,6 @@
+filename$ = "sample.txt"
+open filename$
+input n$
+print n$
+write n$
+close

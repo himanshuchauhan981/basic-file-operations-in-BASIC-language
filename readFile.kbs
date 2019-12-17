@@ -1,0 +1,8 @@
+filename$ = "sample.txt"
+
+open filename$
+total = 0
+for i=1 to 2
+sn$ = readline
+PRINT sn$
+next i
