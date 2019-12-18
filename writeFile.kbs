@@ -1,4 +1,4 @@
-filename$ = "sample.txt"
+filename$ = "sample1.txt"
 open filename$
 input n$
 print n$

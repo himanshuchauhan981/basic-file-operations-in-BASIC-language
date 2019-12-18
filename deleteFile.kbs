@@ -11,7 +11,7 @@ end while
 
 reset
 input "Enter text to delete : ",deleteText$
-for i=1 to 5
+for i=0 to 5
 if arr$[i] <> deleteText$  then
 writeline arr$[i]
 end if

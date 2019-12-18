@@ -1,0 +1,89 @@
+filename$ = "sample.txt"
+
+top: print "Enter 1 for adding data, 2 for reading data, 3 for updating data, 4 for removing data and 0 to quit : "
+
+input num
+if num = 0 then end
+if num = 1 then gosub writeFileData
+if num = 2 then gosub readFileData
+if num = 3 then gosub updateFileData
+if num = 4 then gosub deleteFileData
+goto top
+
+
+readFileData:
+open filename$
+total = 0
+while not eof
+sn$ = readline
+PRINT sn$
+end while
+close
+return
+
+
+updateFileData:
+open filename$
+i = 0
+dim arr$(6)
+while not eof
+sn$ = read
+arr$[i] = sn$
+i = i + 1
+end while
+
+input "Enter student name  to search :  ",searchText$
+input "Enter new student name : ",newText$
+reset
+for j = 0 to i-1
+if arr$[j] = searchText$ then
+print "Search Successful"
+writeline newText$
+else
+print "else"
+writeline arr$[j]
+end if
+next j
+close
+return
+
+deleteFileData:
+open filename$
+i = 0
+dim arr$(6)
+while not eof
+sn$ = read
+arr$[i] = sn$
+i = i + 1
+end while
+
+reset
+input "Enter student name to delete : ",deleteText$
+for i=0 to 5
+if arr$[i] <> deleteText$  then
+writeline arr$[i]
+end if
+next i
+print "Text deleted successfully"
+close
+return
+
+writeFileData:
+open filename$
+i = 0
+dim arr$(100)
+while not eof
+sn$ = read
+arr$[i] = sn$
+i = i + 1
+end while
+
+input "Enter new Student name : ",arr$[i]
+reset
+for j =0 to i
+writeline arr$[j]
+next j
+close
+print "Student added Successfully"
+return
+

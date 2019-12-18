@@ -11,12 +11,11 @@ end while
 reset
 input "Enter text to search :  ",searchText$
 input "Enter new text : ",newText$
-for i=1 to 5
-print arr$[i]
+for i=0 to 5
 if arr$[i] = searchText$  then
 writeline newText$
 else 
-write arr$[i]
+writeline arr$[i]
 end if
 next i
 print "Text successfully updated"
