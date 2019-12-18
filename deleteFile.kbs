@@ -1,19 +1,25 @@
 filename$ = "sample.txt"
 open filename$
-i = 0
+len = 0
 dim arr$(6)
 while not eof
 sn$ = read
-arr$[i] = sn$
-i = i + 1
+arr$[len] = sn$
+print(arr$[len])
+len = len + 1
 end while
 
-
+input "Enter student Id : ",studentID$
 reset
-input "Enter text to delete : ",deleteText$
-for i=0 to 5
-if arr$[i] <> deleteText$  then
-writeline arr$[i]
+for i =0 to len-1
+split$ = explode(arr$[i],",")
+
+
+id$ = split$[split$[?]-1]
+
+if studentID$ = id$ then
+print  "found"
 end if
 next i
-print "Text deleted successfully"
+
+ 

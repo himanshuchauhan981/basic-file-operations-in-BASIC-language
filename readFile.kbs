@@ -1,8 +1,10 @@
 filename$ = "sample.txt"
+	subroutine readFileData()
 
 open filename$
 total = 0
-for i=1 to 2
+while not eof
 sn$ = readline
 PRINT sn$
-next i
+end while
+end subroutine

@@ -15,7 +15,7 @@ readFileData:
 open filename$
 total = 0
 while not eof
-sn$ = readline
+sn$ = read
 PRINT sn$
 end while
 close
@@ -24,65 +24,86 @@ return
 
 updateFileData:
 open filename$
-i = 0
-dim arr$(6)
+len = 0
+dim arr$(100)
 while not eof
 sn$ = read
-arr$[i] = sn$
-i = i + 1
+arr$[len] = sn$
+len = len + 1
 end while
 
-input "Enter student name  to search :  ",searchText$
+input "Enter student ID  to search :  ",searchID$
 input "Enter new student name : ",newText$
 reset
-for j = 0 to i-1
-if arr$[j] = searchText$ then
-print "Search Successful"
-writeline newText$
+for i =0 to len-1
+split$ = explode(arr$[i],",")
+id$ = split$[split$[?]-1]
+if searchID$ = id$ then
+writeline newText$+","+id$
+print "Data updated successfully"
 else
-print "else"
-writeline arr$[j]
-end if
-next j
-close
-return
-
-deleteFileData:
-open filename$
-i = 0
-dim arr$(6)
-while not eof
-sn$ = read
-arr$[i] = sn$
-i = i + 1
-end while
-
-reset
-input "Enter student name to delete : ",deleteText$
-for i=0 to 5
-if arr$[i] <> deleteText$  then
 writeline arr$[i]
 end if
 next i
-print "Text deleted successfully"
-close
+return
+
+
+deleteFileData:
+open filename$
+len = 0
+dim arr$(100)
+while not eof
+sn$ = read
+arr$[len] = sn$
+len = len + 1
+end while
+
+input "Enter student Id : ",studentID$
+reset
+for i =0 to len-1
+split$ = explode(arr$[i],",")
+
+
+id$ = split$[split$[?]-1]
+
+if studentID$ <> id$ then
+writeline arr$[i]
+end if
+next i
 return
 
 writeFileData:
 open filename$
+foundStatus = 0
+
+input "Enter new Student name : ",newStudentName$
+input "Enter Student roll no : ",newStudentRollNo$
+data$  = newStudentName$ +","+ newStudentRollNo$
 i = 0
 dim arr$(100)
 while not eof
-sn$ = read
+sn$ = readline
 arr$[i] = sn$
 i = i + 1
 end while
 
-input "Enter new Student name : ",arr$[i]
-reset
-for j =0 to i
-writeline arr$[j]
+if i = 0 then
+writeline data$
+print "Student added Successfully"
+return  
+end if
+
+for j = 0 to i-1
+existingData = instr(arr$[j],newStudentRollNo$)
+if existingData > 0 then
+print("Student ID already Existed")
+foundStatus = 1
+end if
 next j
+
+if foundStatus = 0 then
+
+writeline data$
 close
 print "Student added Successfully"
 return
