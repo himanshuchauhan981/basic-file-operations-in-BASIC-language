@@ -1,10 +1,10 @@
 filename$ = "sample.txt"
-	subroutine readFileData()
 
+readFileData:
 open filename$
 total = 0
 while not eof
 sn$ = readline
 PRINT sn$
 end while
-end subroutine
+return
